@@ -105,7 +105,7 @@ Page* ChromeClient::CreateWindow(
     NavigationPolicy navigation_policy,
     SandboxFlags sandbox_flags,
     const FeaturePolicy::FeatureState& opener_feature_state,
-    const SessionStorageNamespaceId& session_storage_namespace_id) {
+    const SessionStorageNamespaceId& session_storage_namespace_id, WebString* manifest) {
   if (!CanOpenUIElementIfDuringPageDismissal(
           frame->Tree().Top(), UIElementType::kPopup, g_empty_string)) {
     return nullptr;
@@ -113,7 +113,7 @@ Page* ChromeClient::CreateWindow(
 
   return CreateWindowDelegate(frame, r, features, navigation_policy,
                               sandbox_flags, opener_feature_state,
-                              session_storage_namespace_id);
+                              session_storage_namespace_id, manifest);
 }
 
 template <typename Delegate>
